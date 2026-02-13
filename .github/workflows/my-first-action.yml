@@ -1,22 +1,22 @@
-name: Real Environment setup
+name: Linting My Code
 
 on: [push]
 
 jobs:
-  check-environment:
+  run-linter:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      
-      - name: Node Version
-        run: node -v
+          # Super-linter needs the full git history to compare files
+          fetch-depth: 0
 
-      - name: Run Dependencies
-        run: echo "in a real project we use npm install"
+      - name: Run Super-Linter
+        uses: super-linter/super-linter@v7
+        env:
+          # This gives the linter permission to report back to GitHub
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # We tell it to only check the files we just changed (saves time)
+          VALIDATE_ALL_CODEBASE: false
