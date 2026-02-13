@@ -3,8 +3,8 @@ name: Real Environment setup
 on: [push]
 
 jobs:
-  check-environment
-    runs-on: ubuntu-latest
+  check-environment:
+    run-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
