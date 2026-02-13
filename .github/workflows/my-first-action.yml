@@ -17,4 +17,7 @@ jobs:
         run: |
           echo "Running unit tests..."
           exit 1
+      - name: Report Failure
+        if: failure()
+        run: echo "Alert! The test failed"
 
