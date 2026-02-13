@@ -1,23 +1,22 @@
-name: Learning Github action
+name: Real Environment setup
 
 on: [push]
 
 jobs:
-  say-hello:
+  check-environment
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       
-      - name: Simulate Build
-        run: echo "Compiling code...Build Successfully"
+      - name: Node Version
+        run: node -v
 
-      - name: Run Tests
-        run: |
-          echo "Running unit tests..."
-          exit 1
-      - name: Report Failure
-        if: failure()
-        run: echo "Alert! The test failed"
-
+      - name: Run Dependencies
+        run: echo "in a real project we use npm install"
