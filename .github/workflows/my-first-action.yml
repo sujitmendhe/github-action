@@ -17,6 +17,6 @@ jobs:
         uses: super-linter/super-linter@v7
         env:
           # This gives the linter permission to report back to GitHub
-          GITHUB_TOKEN: ${{ secrets.AWS_ACCOUNT_ID }}
+          GITHUB_TOKEN: ${{ secrets.AWS_ACCOUNT_ID}}
           # We tell it to only check the files we just changed (saves time)
           VALIDATE_ALL_CODEBASE: false
