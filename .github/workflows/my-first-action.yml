@@ -25,4 +25,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Test AWS Connection
-        run: aws s3 ls   
+        run: aws s3 ls
