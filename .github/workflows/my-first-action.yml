@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Checkout Code
-       uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
       
-      -name: Greet the User
-       run: echo "Hello! this is my first automated pipeline"
+      - name: Greet the User
+        run: echo "Hello! this is my first automated pipeline"
 
-      -name: how the Date
-       run: date
+      - name: how the Date
+        run: date
