@@ -7,11 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Checkout Code
-       uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
       
-      -name: Greet the User
-       run: echo "Hello! this is my first automated pipeline"
+      - name: Simulate Build
+        run: echo "Compiling code...Build Successfully"
 
-      -name: how the Date
-       run: date
+      - name: Run Tests
+        run: |
+          echo "Running unit tests..."
+          exit 1
