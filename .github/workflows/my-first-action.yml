@@ -1,5 +1,4 @@
-name: myfirsttry
-
+name: createBucket
 on:
   push:
     branch:
@@ -7,22 +6,28 @@ on:
 
 env:
   AWS_REGION: us-east-1
+  BUCKET_NAME: my-uno-bucket-demo-20226
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Test AWS Connection
-        run: aws s3 ls 
+      - name: AWS Configuration
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secret.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secret.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION}}
+
+      - name: Create S3 bucket
+        run: aws s3 mb s3://${{ env.BUCKET_NAME }}
+
+      - name: create dummy file
+        run: echo "Deployment successful" > test.txt
+
+      - name: upload file to s3
+        run: aws s3 cp test.txt s3://${{ env.BUCKET_NAME }}
